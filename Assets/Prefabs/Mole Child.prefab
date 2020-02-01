@@ -101,6 +101,7 @@ MonoBehaviour:
   myChild: {fileID: 0}
   partnerSpot: {fileID: 0}
   mySmooth: {fileID: 2283178364453747476}
+  myNoise: {fileID: 0}
 --- !u!114 &2283178364453747476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,7 +117,7 @@ MonoBehaviour:
   _interpolator: 2
   _target: {fileID: 0}
   _offsetDistance: 1
-  _positionSpeed: 2
+  _positionSpeed: 5
   _rotationSpeed: 0
   _jumpDistance: 1
   _jumpAngle: 60

@@ -1,14 +1,12 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AltarController : Interactive
+public class ArkController : Interactive
 {
 
-    private int childCount = 0;
+    private int woodCount = 0;
 
-    [SerializeField]
-    private GameObject Wood;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,14 +16,13 @@ public class AltarController : Interactive
     public override void Interact() {
         Debug.Log("doing thing");
         base.Interact();
-        ClaimChild();
+        ClaimWood();
     }
 
-    private void ClaimChild() {
+    private void ClaimWood() {
         var gm = GameManager.instance;
         var player = gm.player;
         List<Animal> toBeKilled = new List<Animal>();
-        List<Animal> toFollow = new List<Animal>();
 
         Debug.Log("looking for children");
 
@@ -34,13 +31,11 @@ public class AltarController : Interactive
 
             Debug.Log($"looking at {test.gameObject.name}");
 
-            if (test.animalType == AnimalType.CHILD) {
+            if (test.animalType == AnimalType.WOOD) {
                 Debug.Log("found child");
-                var wood = GameObject.Instantiate(Wood, transform.position, transform.rotation);
                 
-                childCount++;
+                woodCount++;
                 toBeKilled.Add(test);
-                toFollow.Add(wood.GetComponent<Animal>());
             }
         }
 
@@ -50,10 +45,5 @@ public class AltarController : Interactive
 
             Destroy(vermin.gameObject);
         }
-
-        foreach (var wood in toFollow) {
-            wood.GetCarried();
-        }
-
     }
 }

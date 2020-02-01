@@ -28,7 +28,11 @@ public class PlayerController : MonoBehaviour
         float moveX = Input.GetAxis("Horizontal");
         float moveY = Input.GetAxis("Vertical");
 
-        Vector3 moveDir = new Vector3(moveX, moveY, 0.0f) * moveSpeed;
+        if (ShouldIFlip(moveX)) {
+            FlipMe();
+        }
+
+        Vector3 moveDir = new Vector3(moveX, 0.0f, moveY) * moveSpeed;
 
         transform.Translate(moveDir * Time.deltaTime);
     }
@@ -40,7 +44,6 @@ public class PlayerController : MonoBehaviour
 
     public void MakeChain() {
         for (var i = 0; i < followTrail.Count; i++) {
-            Debug.Log(i);
             var follower = followTrail[i];
             var followerSmooth = follower.mySmooth;
 
@@ -50,5 +53,20 @@ public class PlayerController : MonoBehaviour
                 followerSmooth._target = followTrail[i-1].transform;
             }
         }
+    }
+
+    private bool ShouldIFlip(float moveX) {
+        if (moveX > 0) {
+            return transform.localScale.x == -1;
+        } else if (moveX < 0) {
+            return transform.localScale.x == 1;
+        } else {
+            return false;
+        }
+    }
+
+    private void FlipMe() {
+        var scale = transform.localScale;
+        transform.localScale = new Vector3(scale.x * -1, scale.y, scale.z); 
     }
 }

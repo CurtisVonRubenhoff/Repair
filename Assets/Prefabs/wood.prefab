@@ -101,6 +101,7 @@ MonoBehaviour:
   myChild: {fileID: 0}
   partnerSpot: {fileID: 0}
   mySmooth: {fileID: 1545298274931054265}
+  myNoise: {fileID: 0}
 --- !u!114 &1545298274931054265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,7 +109,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1545298274931054264}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e04f5e50cd25d4df6ad5fe43d1f88cca, type: 3}
   m_Name: 
@@ -116,7 +117,7 @@ MonoBehaviour:
   _interpolator: 2
   _target: {fileID: 0}
   _offsetDistance: 2
-  _positionSpeed: 2
+  _positionSpeed: 5
   _rotationSpeed: 0
   _jumpDistance: 1
   _jumpAngle: 60

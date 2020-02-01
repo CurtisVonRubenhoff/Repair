@@ -30,6 +30,9 @@ public class Animal : Interactive {
     PartnerSpot partnerSpot;
     public SmoothFollow mySmooth;
 
+    [SerializeField]
+    private AudioSource myNoise;
+
 
     private List<Animal> previousMatches = new List<Animal>();
 
@@ -56,21 +59,8 @@ public class Animal : Interactive {
                 CreateChild();
                 GameManager.instance.player.MakeChain();
             } else {
-                Debug.Log("who dis be");
-
-                // check if we've been matched with this animal before
-                var isPreviousMatch = !(previousMatches.Find(x => x == newPartner) == null);
-
-                if (isPreviousMatch) {
-                    // Deny the match
-                    Debug.Log("nah");
-
-                } else {
-                    // Take the match
-                    Debug.Log("fine for now");
-                    BeMine(newPartner);
-                    GameManager.instance.player.MakeChain();
-                }
+                // Deny the match
+                Debug.Log("nah");
             }
         }
     }
@@ -80,7 +70,13 @@ public class Animal : Interactive {
     }
 
     public void GetCarried() {
+        var col = gameObject.GetComponent<SphereCollider>();
         var player = GameManager.instance.player;
+
+        if (col != null) {
+            col.enabled = false;
+        }
+
         if (isAdultAnimal()) {
             myPartner.myPartner = null;
             GameManager.instance.playerCarrying = this;
@@ -92,6 +88,10 @@ public class Animal : Interactive {
         pc.AcceptFollower(this);
         pc.MakeChain();
         mySmooth.enabled = true;
+
+        if (myNoise != null) {
+            myNoise.Play();
+        } 
         //transform.SetParent(player.transform);
     }
 
@@ -148,9 +148,11 @@ public class Animal : Interactive {
         
         // put animal next to me
         match.gameObject.transform.position = partnerSpot.transform.position;
-        match.gameObject.transform.rotation = partnerSpot.transform.rotation;
+        //match.gameObject.transform.rotation = partnerSpot.transform.rotation;
 
         // set the match's partnerspot to the one I'm on
         match.partnerSpot = partnerSpot.neighborSpot;
+        if (myNoise != null)
+            myNoise.Play();
     }
 }

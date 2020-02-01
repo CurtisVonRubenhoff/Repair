@@ -15,15 +15,17 @@ public class Interactive : MonoBehaviour {
     }
 
 
-    private void OnTriggerEnter2D(Collider2D col) {
+    public virtual void OnTriggerEnter(Collider col) {
         if (col.gameObject.tag == "Player") {
+            TextMaster.IndicatorOn(gameObject.name);
             Debug.Log($"{gameObject.name} <color=green>found</color> player");
             canUse = true;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D col) {
+    public virtual void OnTriggerExit(Collider col) {
         if (col.gameObject.tag == "Player") {
+            TextMaster.EndText();
             Debug.Log($"{gameObject.name} <color=red>lost</color> player");
             canUse = false;
         }
@@ -31,6 +33,7 @@ public class Interactive : MonoBehaviour {
 
     public virtual void Interact() {
         canUse = false;
+        TextMaster.EndText();
         // Implement in child class
     }
 }
