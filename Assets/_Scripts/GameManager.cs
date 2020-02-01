@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public Animal playerCarrying;
+
+    public static GameManager instance;
+
+    public GameObject player;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (GameManager.instance == null) {
+            GameManager.instance = this;
+        }
     }
 
     // Update is called once per frame
