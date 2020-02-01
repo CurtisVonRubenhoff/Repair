@@ -5,9 +5,15 @@ using Klak.Motion;
 
 public enum AnimalType {
     GOAT,
-    MOLE,
+    CAT,
     CHILD,
     WOOD,
+    APE,
+    DUCK,
+    ELEPHANT,
+    SLOTH,
+    TURTLE,
+    KANGAROO
 }
 
 public class Animal : Interactive {
