@@ -36,11 +36,13 @@ namespace Klak.Motion
         SerializedProperty _rotationSpeed;
         SerializedProperty _jumpDistance;
         SerializedProperty _jumpAngle;
+        SerializedProperty _offsetDistance;
 
         static GUIContent _textAngle = new GUIContent("Angle");
         static GUIContent _textDistance = new GUIContent("Distance");
         static GUIContent _textPosition = new GUIContent("Position");
         static GUIContent _textRotation = new GUIContent("Rotation");
+        static GUIContent _textOffsetDistance = new GUIContent("Offset Distance");
 
         void OnEnable()
         {
@@ -50,6 +52,8 @@ namespace Klak.Motion
             _rotationSpeed = serializedObject.FindProperty("_rotationSpeed");
             _jumpDistance = serializedObject.FindProperty("_jumpDistance");
             _jumpAngle = serializedObject.FindProperty("_jumpAngle");
+            _offsetDistance = serializedObject.FindProperty("_offsetDistance");
+
         }
 
         public override void OnInspectorGUI()
@@ -64,6 +68,7 @@ namespace Klak.Motion
             EditorGUILayout.LabelField("Interpolation Speed", EditorStyles.boldLabel);
             EditorGUILayout.PropertyField(_positionSpeed, _textPosition);
             EditorGUILayout.PropertyField(_rotationSpeed, _textRotation);
+            EditorGUILayout.PropertyField(_offsetDistance, _textOffsetDistance);
 
             EditorGUILayout.Space();
 

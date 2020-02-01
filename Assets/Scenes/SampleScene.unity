@@ -195,7 +195,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1e624e1a997d8411ebe498d51d9dcc6d, type: 3}
+  m_Sprite: {fileID: -2456532157664238391, guid: 87bac8dd230fadb40a7efaac2337f0e5,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -218,6 +219,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 963194228}
+  - {fileID: 557179587}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -255,18 +257,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.96}
+  m_Offset: {x: -0.305093, y: -0.72141}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.2, y: 3.2}
+    oldSize: {x: 1.4866667, y: 2.1666667}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.69}
+  m_Size: {x: 0.7751945, y: 0.64717996}
   m_EdgeRadius: 0
 --- !u!1 &183717288
 GameObject:
@@ -472,8 +474,8 @@ MonoBehaviour:
   myChild: {fileID: 6781188917626753078, guid: 677293eae1dde284cacbb51bb29da912, type: 3}
   partnerSpot: {fileID: 1428146191}
   mySmooth: {fileID: 199084651}
---- !u!61 &199084648
-BoxCollider2D:
+--- !u!58 &199084648
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -485,19 +487,9 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.95, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0.15, y: 0.42}
   serializedVersion: 2
-  m_Size: {x: 3.14, y: 0.56}
-  m_EdgeRadius: 0
+  m_Radius: 0.84
 --- !u!50 &199084649
 Rigidbody2D:
   serializedVersion: 4
@@ -539,6 +531,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interpolator: 2
   _target: {fileID: 199084650}
+  _offsetDistance: 1
   _positionSpeed: 2
   _rotationSpeed: 0
   _jumpDistance: 1
@@ -631,6 +624,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   neighborSpot: {fileID: 1537677234}
+--- !u!1 &557179586
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 557179587}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &557179587
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557179586}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 57572278}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -846,8 +869,8 @@ MonoBehaviour:
   myChild: {fileID: 6781188917626753078, guid: 677293eae1dde284cacbb51bb29da912, type: 3}
   partnerSpot: {fileID: 1537677234}
   mySmooth: {fileID: 906644775}
---- !u!61 &906644772
-BoxCollider2D:
+--- !u!58 &906644772
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -859,19 +882,9 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.83, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0.15, y: 0.42}
   serializedVersion: 2
-  m_Size: {x: 3.14, y: 0.56}
-  m_EdgeRadius: 0
+  m_Radius: 0.84
 --- !u!50 &906644773
 Rigidbody2D:
   serializedVersion: 4
@@ -913,6 +926,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interpolator: 2
   _target: {fileID: 906644774}
+  _offsetDistance: 1
   _positionSpeed: 2
   _rotationSpeed: 0
   _jumpDistance: 1
@@ -1200,8 +1214,8 @@ GameObject:
   - component: {fileID: 1513208753}
   - component: {fileID: 1513208750}
   - component: {fileID: 1513208752}
-  - component: {fileID: 1513208751}
   - component: {fileID: 1513208755}
+  - component: {fileID: 1513208751}
   m_Layer: 0
   m_Name: Mole F
   m_TagString: Animal
@@ -1227,8 +1241,8 @@ MonoBehaviour:
   myChild: {fileID: 1394906315244980637, guid: 9f0e5c528002cfe45aa66e02d8757424, type: 3}
   partnerSpot: {fileID: 548347321}
   mySmooth: {fileID: 1513208755}
---- !u!61 &1513208751
-BoxCollider2D:
+--- !u!58 &1513208751
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1237,22 +1251,12 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.94, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.6, y: 1.6}
-    newSize: {x: 1.6, y: 1.6}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 3.14, y: 0.56}
-  m_EdgeRadius: 0
+  m_Radius: 0.8
 --- !u!50 &1513208752
 Rigidbody2D:
   serializedVersion: 4
@@ -1352,6 +1356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interpolator: 2
   _target: {fileID: 0}
+  _offsetDistance: 1
   _positionSpeed: 2
   _rotationSpeed: 2
   _jumpDistance: 1
@@ -1551,8 +1556,8 @@ GameObject:
   - component: {fileID: 2109861276}
   - component: {fileID: 2109861275}
   - component: {fileID: 2109861274}
-  - component: {fileID: 2109861273}
   - component: {fileID: 2109861278}
+  - component: {fileID: 2109861273}
   m_Layer: 0
   m_Name: Mole M
   m_TagString: Animal
@@ -1560,8 +1565,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &2109861273
-BoxCollider2D:
+--- !u!58 &2109861273
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1570,22 +1575,12 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.87, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.6, y: 1.6}
-    newSize: {x: 1.6, y: 1.6}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 3.14, y: 0.47}
-  m_EdgeRadius: 0
+  m_Radius: 0.8
 --- !u!50 &2109861274
 Rigidbody2D:
   serializedVersion: 4
@@ -1703,6 +1698,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interpolator: 2
   _target: {fileID: 0}
+  _offsetDistance: 1
   _positionSpeed: 2
   _rotationSpeed: 2
   _jumpDistance: 1

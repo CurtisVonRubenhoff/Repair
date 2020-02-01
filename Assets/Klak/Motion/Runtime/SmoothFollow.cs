@@ -48,6 +48,9 @@ namespace Klak.Motion
         public Transform _target;
 
         [SerializeField, Range(0, 20)]
+        private float _offsetDistance = 1;
+
+        [SerializeField, Range(0, 20)]
         float _positionSpeed = 2;
 
         [SerializeField, Range(0, 20)]
@@ -71,6 +74,11 @@ namespace Klak.Motion
         public Transform target {
             get { return _target; }
             set { _target = value; }
+        }
+
+        public float offsetDistance {
+            get { return _offsetDistance; }
+            set { _offsetDistance = value; }
         }
 
         public float positionSpeed {
@@ -140,23 +148,25 @@ namespace Klak.Motion
 
         void Update()
         {
+            bool atOffset = Vector3.Distance(target.position, transform.position) <= _offsetDistance;
+
             if (_interpolator == Interpolator.Exponential)
             {
-                if (_positionSpeed > 0)
+                if (_positionSpeed > 0 && !atOffset)
                     transform.position = ETween.Step(transform.position, target.position, _positionSpeed);
                 if (_rotationSpeed > 0)
                     transform.rotation = ETween.Step(transform.rotation, target.rotation, _rotationSpeed);
             }
             else if (_interpolator == Interpolator.DampedSpring)
             {
-                if (_positionSpeed > 0)
+                if (_positionSpeed > 0 && !atOffset)
                     transform.position = DTween.Step(transform.position, target.position, ref _vposition, _positionSpeed);
                 if (_rotationSpeed > 0)
                     transform.rotation = DTween.Step(transform.rotation, target.rotation, ref _vrotation, _rotationSpeed);
             }
             else
             {
-                if (_positionSpeed > 0)
+                if (_positionSpeed > 0 && !atOffset)
                     transform.position = SpringPosition(transform.position, target.position);
                 if (_rotationSpeed > 0)
                     transform.rotation = SpringRotation(transform.rotation, target.rotation);
