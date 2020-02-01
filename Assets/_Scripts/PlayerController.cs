@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private Animator playerAnim;
 
+    public List<Animal> followTrail = new List<Animal>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,5 +31,24 @@ public class PlayerController : MonoBehaviour
         Vector3 moveDir = new Vector3(moveX, moveY, 0.0f) * moveSpeed;
 
         transform.Translate(moveDir * Time.deltaTime);
+    }
+
+    public void AcceptFollower(Animal follower) {
+        Debug.Log("adding follower");
+        followTrail.Add(follower);
+    }
+
+    public void MakeChain() {
+        for (var i = 0; i < followTrail.Count; i++) {
+            Debug.Log(i);
+            var follower = followTrail[i];
+            var followerSmooth = follower.mySmooth;
+
+            if (i == 0) {
+                followerSmooth._target = gameObject.transform;
+            } else {
+                followerSmooth._target = followTrail[i-1].transform;
+            }
+        }
     }
 }

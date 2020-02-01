@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Klak.Motion;
 
 public enum AnimalType {
     GOAT,
     MOLE,
-    CHILD
+    CHILD,
+    WOOD,
 }
 
 public class Animal : Interactive {
@@ -20,6 +22,8 @@ public class Animal : Interactive {
 
     [SerializeField]
     PartnerSpot partnerSpot;
+    public SmoothFollow mySmooth;
+
 
     private List<Animal> previousMatches = new List<Animal>();
 
@@ -34,16 +38,17 @@ public class Animal : Interactive {
                 Debug.Log("my love, how i missed you");
                 amMatched = true;
 
-                // give the player my partner
-                if (myPartner != null) {
-                    myPartner.GetCarried(GameManager.instance.player);
-                }
-
                 // take the match
                 BeMine(newPartner);
                 newPartner.amMatched = true;
 
+                // give the player my partner
+                if (myPartner != null) {
+                    myPartner.GetCarried();
+                }
+
                 CreateChild();
+                GameManager.instance.player.MakeChain();
             } else {
                 Debug.Log("who dis be");
 
@@ -58,6 +63,7 @@ public class Animal : Interactive {
                     // Take the match
                     Debug.Log("fine for now");
                     BeMine(newPartner);
+                    GameManager.instance.player.MakeChain();
                 }
             }
         }
@@ -67,14 +73,20 @@ public class Animal : Interactive {
         return protentialPartner.animalType == myLove;
     }
 
-    public void GetCarried(GameObject player) {
-        if (!(animalType == AnimalType.CHILD)) {
+    public void GetCarried() {
+        var player = GameManager.instance.player;
+        if (isAdultAnimal()) {
             myPartner.myPartner = null;
             GameManager.instance.playerCarrying = this;
         }
 
+        var pc = player;
+
         myPartner = null;
-        transform.SetParent(player.transform);
+        pc.AcceptFollower(this);
+        pc.MakeChain();
+        mySmooth.enabled = true;
+        //transform.SetParent(player.transform);
     }
 
     private void CreateChild() {
@@ -83,21 +95,23 @@ public class Animal : Interactive {
 
         var child = GameObject.Instantiate(myChild, transform.position, transform.rotation);
 
-        child.GetComponent<Animal>().GetCarried(GameManager.instance.player);
+        child.GetComponent<Animal>().GetCarried();
     }
 
     public override void Interact() {
         Debug.Log("doink");
         base.Interact();
 
-        var amICarried = GameManager.instance.playerCarrying == this;
+        var player = GameManager.instance.player;
+
+        var amICarried = player.followTrail.Contains(this);
         var carried = GameManager.instance.playerCarrying;
 
         // don't do anything if i'm the one being carried
         if (!amICarried) {
             if (carried == null) {
                 // the player isn't carrying anything, so pick me up
-                GetCarried(GameManager.instance.player);
+                GetCarried();
             } else {
                 // the player is offering me a partner
 
@@ -113,9 +127,18 @@ public class Animal : Interactive {
         }
     }
 
+    public bool isAdultAnimal() {
+        return animalType != AnimalType.CHILD && animalType != AnimalType.WOOD;
+    }
+
     public void BeMine(Animal match) {
+        var player = GameManager.instance.player;
         // the match no longer needs to be a child of the player
-        match.transform.SetParent(null);
+        //atch.transform.SetParent(null);
+        match.mySmooth.enabled = false;
+        player.followTrail.Remove(match);
+        player.MakeChain();
+        // mySmooth._target = null;
         
         // put animal next to me
         match.gameObject.transform.position = partnerSpot.transform.position;

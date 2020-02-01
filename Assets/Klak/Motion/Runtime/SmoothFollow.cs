@@ -44,8 +44,8 @@ namespace Klak.Motion
         [SerializeField]
         Interpolator _interpolator = Interpolator.DampedSpring;
 
-        [SerializeField]
-        Transform _target;
+        
+        public Transform _target;
 
         [SerializeField, Range(0, 20)]
         float _positionSpeed = 2;

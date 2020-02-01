@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7512222691397706277}
   - component: {fileID: 3382451271602521093}
   - component: {fileID: 5836515984229825840}
+  - component: {fileID: -2168871923882126653}
   m_Layer: 0
   m_Name: Goat Child
   m_TagString: Animal
@@ -71,6 +72,25 @@ MonoBehaviour:
   myPartner: {fileID: 0}
   myChild: {fileID: 0}
   partnerSpot: {fileID: 0}
+  mySmooth: {fileID: -2168871923882126653}
+--- !u!114 &-2168871923882126653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6781188917626753078}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e04f5e50cd25d4df6ad5fe43d1f88cca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interpolator: 2
+  _target: {fileID: 7512222691397706277}
+  _positionSpeed: 2
+  _rotationSpeed: 0
+  _jumpDistance: 1
+  _jumpAngle: 60
 --- !u!1 &6820171614522516510
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,7 +149,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 8150399603244394558, guid: 848ed5206f27517478a77c54390ac64f, type: 3}
+  - {fileID: 2100000, guid: 83fbb55bda6206c42a692e5d1090b67a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
