@@ -14,7 +14,7 @@ public static class Dictionaries {
         {new Tuple<AnimalType, AnimalType>(AnimalType.GOAT, AnimalType.SLOTH), "You are a dumbass, Noah. You can’t make a goat fuck a sloth."},
         {new Tuple<AnimalType, AnimalType>(AnimalType.SLOTH, AnimalType.CAT), "That’s disgusting, Noah. You can’t make a sloth fuck a cat."},
         {new Tuple<AnimalType, AnimalType>(AnimalType.CAT, AnimalType.SLOTH), "That’s disgusting, Noah. You can’t make a cat fuck a sloth."},
-        {new Tuple<AnimalType, AnimalType>(AnimalType.SLOTH, AnimalType.APE), "You should be ashamed of yourself, Noah. You can’t make a sgiloth fuck an ape."},
+        {new Tuple<AnimalType, AnimalType>(AnimalType.SLOTH, AnimalType.APE), "You should be ashamed of yourself, Noah. You can’t make a sloth fuck an ape."},
         {new Tuple<AnimalType, AnimalType>(AnimalType.APE, AnimalType.SLOTH), "You should be ashamed of yourself, Noah. You can’t make an ape fuck a sloth."},
         {new Tuple<AnimalType, AnimalType>(AnimalType.TURTLE, AnimalType.GOAT), "Not cool, Noah. You can’t make a turtle fuck a goat."},
         {new Tuple<AnimalType, AnimalType>(AnimalType.GOAT, AnimalType.TURTLE), "Not cool, Noah. You can’t make a goat fuck a turtle."},
