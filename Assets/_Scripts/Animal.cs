@@ -33,8 +33,20 @@ public class Animal : Interactive {
     [SerializeField]
     private AudioSource myNoise;
 
+    public bool amCarried;
+
+    [SerializeField]
+    private float lookOffset;
 
     private List<Animal> previousMatches = new List<Animal>();
+
+    public override void Update() {
+        base.Update();
+
+        if (amCarried) {
+            transform.LookAt(mySmooth._target);
+        }
+    }
 
     public void TakeNewPartner(Animal newPartner) {
         // don't do anything if i'm with my love
@@ -70,6 +82,7 @@ public class Animal : Interactive {
     }
 
     public void GetCarried() {
+        amCarried = true;
         var col = gameObject.GetComponent<SphereCollider>();
         var player = GameManager.instance.player;
 
@@ -138,6 +151,7 @@ public class Animal : Interactive {
     }
 
     public void BeMine(Animal match) {
+        match.amCarried = false;
         var player = GameManager.instance.player;
         // the match no longer needs to be a child of the player
         //atch.transform.SetParent(null);
@@ -147,8 +161,9 @@ public class Animal : Interactive {
         // mySmooth._target = null;
         
         // put animal next to me
+        var rotation = partnerSpot.transform.rotation;
         match.gameObject.transform.position = partnerSpot.transform.position;
-        //match.gameObject.transform.rotation = partnerSpot.transform.rotation;
+        match.gameObject.transform.rotation = Quaternion.Euler(0, rotation.y, 0);
 
         // set the match's partnerspot to the one I'm on
         match.partnerSpot = partnerSpot.neighborSpot;

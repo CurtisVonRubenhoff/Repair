@@ -5,7 +5,7 @@ using UnityEngine;
 public class Interactive : MonoBehaviour {
     private bool canUse = false;
 
-    private void Update() {
+    public virtual void Update() {
         if (canUse) {
             if (Input.GetButtonDown("Interact")) {
                 Debug.Log($"{gameObject.name} activated by player");
