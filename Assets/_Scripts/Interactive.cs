@@ -3,7 +3,7 @@ using UnityEngine;
 
 
 public class Interactive : MonoBehaviour {
-    private bool canUse = false;
+    protected bool canUse = false;
 
     public virtual void Update() {
         if (canUse) {

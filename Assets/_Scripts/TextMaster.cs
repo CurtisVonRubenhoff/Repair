@@ -24,6 +24,10 @@ public class TextMaster: MonoBehaviour {
   public Button AcceptButton;
   public Button DenyButton;
 
+  public GameObject GodParent;
+  public GameObject MainCloud;
+
+
   public static TextMaster instance;
   private void Start() {
     if (instance == null) instance = this;
@@ -34,12 +38,17 @@ public class TextMaster: MonoBehaviour {
     ClearText();
     instance.TextBackground.enabled = true;
     instance.SpeakerName.text = message.speaker;
+    if (message.speaker == "Yahweh") {
+      instance.MainCloud.transform.rotation = Quaternion.Euler(Vector3.zero);
+      instance.GodParent.SetActive(true);
+    }
     instance.StartCoroutine(instance.typeText(message.message));
     if (message.isPrompt) EnableChoices();
   }
 
   public static void ClearText() {
     instance.StopAllCoroutines();
+    instance.SpeakerName.text = "";
     instance.MainTextBox.text = "";
   }
 
@@ -65,6 +74,7 @@ public class TextMaster: MonoBehaviour {
   public static void EndText() {
       IndicatorOff();
       ClearText();
+      instance.GodParent.SetActive(false);
       instance.TextBackground.enabled = false;
   }
 

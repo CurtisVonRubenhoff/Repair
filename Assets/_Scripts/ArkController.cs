@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ArkController : Interactive
 {
-
+    [SerializeField]
     private int woodCount = 0;
 
     // Start is called before the first frame update
@@ -16,7 +16,11 @@ public class ArkController : Interactive
     public override void Interact() {
         Debug.Log("doing thing");
         base.Interact();
-        ClaimWood();
+        if (woodCount == 8) {
+            YahwehController.YouDidIt();
+        } else {
+            ClaimWood();
+        }
     }
 
     private void ClaimWood() {
@@ -44,6 +48,14 @@ public class ArkController : Interactive
             player.MakeChain();
 
             Destroy(vermin.gameObject);
+        }
+
+        if (toBeKilled.Count == 0 && woodCount < 8) {
+            TextMaster.ShowText(new Message(false, "You do not have enough wood to fix the Ark.", ""));
+        }
+
+        if (woodCount == 8) {
+            YahwehController.YouDidIt();
         }
     }
 }

@@ -73,6 +73,8 @@ public class Animal : Interactive {
             } else {
                 // Deny the match
                 Debug.Log("nah");
+
+                YahwehController.ScoldNoah(this, newPartner);
             }
         }
     }
