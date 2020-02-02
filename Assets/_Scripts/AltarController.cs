@@ -7,6 +7,12 @@ public class AltarController : Interactive
 
     private int childCount = 0;
 
+    private bool introComplete = false;
+    private int currentMessage = 0;
+
+    [SerializeField]
+    private List<Message> introMessages = new List<Message>();
+
     [SerializeField]
     private GameObject Wood;
     // Start is called before the first frame update
@@ -16,9 +22,26 @@ public class AltarController : Interactive
     }
 
     public override void Interact() {
-        Debug.Log("doing thing");
         base.Interact();
-        ClaimChild();
+
+        if (introComplete) {
+            ClaimChild();
+        } else {
+            DoIntro();
+        }
+    }
+
+    private void DoIntro() {
+        TextMaster.ShowText(introMessages[currentMessage]);
+
+        currentMessage++;
+
+        if (currentMessage == introMessages.Count) {
+            introComplete = true;
+        } else {
+            canUse = true;
+        }
+
     }
 
     private void ClaimChild() {
@@ -42,6 +65,7 @@ public class AltarController : Interactive
                 toBeKilled.Add(test);
                 toFollow.Add(wood.GetComponent<Animal>());
             }
+            
         }
 
         foreach (var vermin in toBeKilled) {
@@ -49,6 +73,10 @@ public class AltarController : Interactive
             player.MakeChain();
 
             Destroy(vermin.gameObject);
+        }
+
+        if (toBeKilled.Count == 0 && childCount < 8) {
+            TextMaster.ShowText(new Message(false, "Noah, what the FUCK are you DOING. BRING ME THE YOUNG!!", "Yahweh"));
         }
 
         foreach (var wood in toFollow) {
