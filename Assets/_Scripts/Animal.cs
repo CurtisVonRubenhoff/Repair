@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Klak.Motion;
@@ -27,6 +28,9 @@ public class Animal : Interactive {
     private GameObject myChild;
 
     [SerializeField]
+    private GameObject poop;
+
+    [SerializeField]
     PartnerSpot partnerSpot;
     public SmoothFollow mySmooth;
 
@@ -40,12 +44,22 @@ public class Animal : Interactive {
 
     private List<Animal> previousMatches = new List<Animal>();
 
+    private bool pooping = false;
+
     public override void Update() {
         base.Update();
 
         if (amCarried) {
             transform.LookAt(mySmooth._target);
+
+            if (animalType != AnimalType.CHILD && animalType != AnimalType.WOOD) {
+                if (!pooping) {
+                    StartCoroutine(Poop());
+                }
+            }
+
         }
+
     }
 
     public void TakeNewPartner(Animal newPartner) {
@@ -171,5 +185,18 @@ public class Animal : Interactive {
         match.partnerSpot = partnerSpot.neighborSpot;
         if (myNoise != null)
             myNoise.Play();
+    }
+
+    private IEnumerator Poop() {
+        pooping = true;
+        var time = UnityEngine.Random.Range(5f, 10f);
+        yield return new WaitForSeconds(time);
+        var spawnPos = new Vector3(transform.position.x, -1.9f, transform.position.z);
+
+        var turd = GameObject.Instantiate(poop,spawnPos, transform.rotation) as GameObject;
+
+        pooping = false;
+
+        Destroy(turd, 15f);
     }
 }

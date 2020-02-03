@@ -79,6 +79,10 @@ public class AltarController : Interactive
             TextMaster.ShowText(new Message(false, "Noah, what the FUCK are you DOING. BRING ME THE YOUNG!!", "Yahweh"));
         }
 
+        if (toBeKilled.Count == 0 && childCount == 8) {
+            TextMaster.ShowText(new Message(false, "Don't just stand there looking stupid, bring the wood to the Ark and fix it.", "Yahweh"));
+        }
+
         foreach (var wood in toFollow) {
             wood.GetCarried();
         }
