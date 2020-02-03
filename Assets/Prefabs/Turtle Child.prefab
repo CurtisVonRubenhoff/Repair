@@ -92,10 +92,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5785b0750190fad4abd77cf88603a542, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animalType: 8
+  animalType: 2
   myLove: 8
   myPartner: {fileID: 0}
   myChild: {fileID: 1394906315244980637, guid: 9f0e5c528002cfe45aa66e02d8757424, type: 3}
+  poop: {fileID: 0}
   partnerSpot: {fileID: 0}
   mySmooth: {fileID: 8637485199573883293}
   myNoise: {fileID: 0}
